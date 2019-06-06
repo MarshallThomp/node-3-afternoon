@@ -24,9 +24,10 @@ module.exports = {
 
     update: (req, res) => {
         let db = req.app.get('db')
-        let { params, query } = req
+        let { id } = req.params
+        let { desc } = req.query
 
-        db.update_product([params.id, query.desc]).then(response => {
+        db.update_product({ id, desc }).then(response => {
             res.send(response)
         }).catch(err => res.status(500).send(err))
     },
